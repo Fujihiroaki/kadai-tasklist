@@ -1,7 +1,10 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
+    
     def index
-        @tasks = Task.all
+        # paramsはハッシュのようなもの
+        # pageという名前のパラメーターが送られてこない場合には、params[:page]はnilになる
+        @tasks = Task.all.page(params[:page])
     end
     
     def show
