@@ -1,4 +1,15 @@
 <h1>メッセージ一覧</h1>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h3>ログインをすると課題リストが見られます！</h3>
+      <h3>↓Signupはこちら↓</h3>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
 
 <% if @tasks.any? %>
     <table class='table table-spriped'>
