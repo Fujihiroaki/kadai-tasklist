@@ -4,6 +4,7 @@
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
+      <h3>ログインをしておりません。</h3>
       <h3>ログインをすると課題リストが見られます！</h3>
       <h3>↓Signupはこちら↓</h3>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
@@ -20,15 +21,17 @@
                 <th>ステータス</th>
             </tr>
         </thead>
-        <tbody>
-            <% @tasks.each do |task| %>
-                <tr>
-                    <th><%= link_to task.id, task %></th>
-                    <th><%= task.content %></th>
-                    <th><%= task.status %></th>
-                </tr>
-            <% end %>
-        </tbody>
+        <% if logged_in? %>
+            <tbody>
+                <% @tasks.each do |task| %>
+                    <tr>
+                        <th><%= link_to task.id, task %></th>
+                        <th><%= task.content %></th>
+                        <th><%= task.status %></th>
+                    </tr>
+                <% end %>
+            </tbody>
+        <% end %>
     </table>
     <div>
         <%= paginate @tasks %>
